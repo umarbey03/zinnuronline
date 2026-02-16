@@ -18,12 +18,37 @@ const {
     getAttendanceStatus
 } = require('./utils');
 
-const bot = new TelegramBot(config.telegram.token, { polling: true });
+const bot = new TelegramBot(config.telegram.token, { 
+  polling: {
+    interval: 1000,
+    autoStart: true,
+    params: {
+      timeout: 10
+    }
+  }
+});
 
 // cache faqat /start uchun
 const authorizedUsers = new Map();
 
 console.log('Bot ishga tushdi...');
+
+/* =========================
+   ERROR HANDLING
+========================= */
+bot.on('polling_error', (error) => {
+  console.error('Polling error:', error.message);
+  if (error.code === 'ENOTFOUND') {
+    console.log('Network error - retrying in 5 seconds...');
+    setTimeout(() => {
+      console.log('Retrying connection...');
+    }, 5000);
+  }
+});
+
+bot.on('error', (error) => {
+  console.error('Bot error:', error);
+});
 
 /* =========================
    START
