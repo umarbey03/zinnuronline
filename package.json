@@ -1,0 +1,21 @@
+{
+  "name": "track",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_OPTIONS=--openssl-legacy-provider node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dayjs": "^1.11.19",
+    "dotenv": "^17.2.4",
+    "geolib": "^3.3.4",
+    "google-auth-library": "^10.5.0",
+    "google-spreadsheet": "^5.0.2",
+    "node-telegram-bot-api": "^0.67.0"
+  }
+}
