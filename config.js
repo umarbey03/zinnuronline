@@ -1,4 +1,10 @@
-require('dotenv').config();
+function requireEnv(name) {
+  if (!process.env[name]) {
+    console.warn(`Missing environment variable: ${name}`);
+  }
+}
+
+require("dotenv").config();
 
 // Default qiymatlar – agar .env da bo'lmasa
 const defaults = {
@@ -9,6 +15,10 @@ const defaults = {
     GRACE_PERIOD_MINUTES: 15,
     WORK_END_TIME: '18:00'             // hozir ishlatilmasa ham saqlab qo'yish mumkin
 };
+
+requireEnv("GOOGLE_PRIVATE_KEY");
+requireEnv("GOOGLE_CLIENT_EMAIL");
+requireEnv("GOOGLE_PROJECT_ID");
 
 module.exports = {
     telegram: {
@@ -34,7 +44,9 @@ module.exports = {
         // Private key uchun eng ishonchli usul:
         // .env da bitta uzun qatorda saqlang, \n larni qo'lda qoldirmang
         // Misol: GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----MIIE...-----END PRIVATE KEY-----"
-        privateKey: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        privateKey: process.env.GOOGLE_PRIVATE_KEY
+          ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
+          : undefined,
         // Agar .env da \n larni ishlatayotgan bo'lsangiz, quyidagicha saqlang:
         // privateKey: (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n')
     }
