@@ -13,6 +13,7 @@
   "dependencies": {
     "dayjs": "^1.11.19",
     "dotenv": "^17.2.4",
+    "express": "^5.2.1",
     "geolib": "^3.3.4",
     "google-auth-library": "^10.5.0",
     "google-spreadsheet": "^5.0.2",
