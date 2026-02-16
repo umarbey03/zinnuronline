@@ -17,5 +17,8 @@
     "google-auth-library": "^10.5.0",
     "google-spreadsheet": "^5.0.2",
     "node-telegram-bot-api": "^0.67.0"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10"
   }
 }
